@@ -7,12 +7,44 @@ import {
   Platform,
 } from 'react-native';
 
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+
+import * as yup from 'yup';
+
 import Logo from '../../assets/images/logo-white.svg';
 import backgroundImage from '../../assets/images/background-image.png';
 
 import * as S from './styles';
+import {Input} from '../../components/Input';
+
+export interface ILoginProps {
+  email: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  email: yup.string().required('Email obrigatório!').email('Email inválido!'),
+  password: yup.string().required('Senha obrigatória!'),
+});
 
 export const Login = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<ILoginProps>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (loginData: ILoginProps) => {
+    console.log(loginData);
+  };
+
   return (
     <>
       <StatusBar
@@ -30,22 +62,30 @@ export const Login = () => {
               </S.LogoWrapper>
 
               <S.LoginFormWrapper>
-                <S.EmailInputWrapper>
-                  <S.EmailLabel>Email</S.EmailLabel>
-                  <S.EmailInput
+                <S.InputWrapper>
+                  <Input
+                    name="email"
+                    label="Email"
+                    error={errors.email?.message}
+                    control={control}
                     autoCapitalize="none"
                     autoCorrect={false}
                     keyboardType="email-address"
                   />
-                </S.EmailInputWrapper>
+                </S.InputWrapper>
 
                 <S.PasswordInputWrapper>
                   <S.PasswordInputContent>
-                    <S.PasswordLabel>Senha</S.PasswordLabel>
-                    <S.PasswordInput secureTextEntry />
+                    <Input
+                      name="password"
+                      label="Senha"
+                      error={errors.password?.message}
+                      control={control}
+                      secureTextEntry
+                    />
                   </S.PasswordInputContent>
 
-                  <S.SignInButton>
+                  <S.SignInButton onPress={handleSubmit(onSubmit)}>
                     <S.SignInButtonText>Entrar</S.SignInButtonText>
                   </S.SignInButton>
                 </S.PasswordInputWrapper>
