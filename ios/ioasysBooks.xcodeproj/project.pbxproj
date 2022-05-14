@@ -12,11 +12,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2CE1E65CD5F84F46A0390E26 /* Heebo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B036C8A649B64113AF812999 /* Heebo-Light.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-ioasysBooks-ioasysBooksTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ioasysBooks-ioasysBooksTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		2CE1E65CD5F84F46A0390E26 /* Heebo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B036C8A649B64113AF812999 /* Heebo-Light.ttf */; };
-		D178EE5D65EB471EAA6CFD3C /* Heebo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24A7BD7588424EDDA400C340 /* Heebo-Medium.ttf */; };
 		BCB4C16F34CE420D826BB3AD /* Heebo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4277647F8E4B9BA857F135 /* Heebo-Regular.ttf */; };
+		D178EE5D65EB471EAA6CFD3C /* Heebo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24A7BD7588424EDDA400C340 /* Heebo-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +33,7 @@
 		00E356EE1AD99517003FC87E /* ioasysBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ioasysBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ioasysBooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ioasysBooksTests.m; sourceTree = "<group>"; };
+		0D4277647F8E4B9BA857F135 /* Heebo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Heebo-Regular.ttf"; path = "../assets/fonts/Heebo-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ioasysBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ioasysBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ioasysBooks/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ioasysBooks/AppDelegate.mm; sourceTree = "<group>"; };
@@ -40,16 +41,15 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ioasysBooks/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ioasysBooks/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ioasysBooks-ioasysBooksTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ioasysBooks-ioasysBooksTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24A7BD7588424EDDA400C340 /* Heebo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Heebo-Medium.ttf"; path = "../assets/fonts/Heebo-Medium.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-ioasysBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ioasysBooks.debug.xcconfig"; path = "Target Support Files/Pods-ioasysBooks/Pods-ioasysBooks.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-ioasysBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ioasysBooks.release.xcconfig"; path = "Target Support Files/Pods-ioasysBooks/Pods-ioasysBooks.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ioasysBooks-ioasysBooksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ioasysBooks-ioasysBooksTests.debug.xcconfig"; path = "Target Support Files/Pods-ioasysBooks-ioasysBooksTests/Pods-ioasysBooks-ioasysBooksTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ioasysBooks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ioasysBooks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ioasysBooks/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ioasysBooks-ioasysBooksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ioasysBooks-ioasysBooksTests.release.xcconfig"; path = "Target Support Files/Pods-ioasysBooks-ioasysBooksTests/Pods-ioasysBooks-ioasysBooksTests.release.xcconfig"; sourceTree = "<group>"; };
+		B036C8A649B64113AF812999 /* Heebo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Heebo-Light.ttf"; path = "../assets/fonts/Heebo-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		B036C8A649B64113AF812999 /* Heebo-Light.ttf */ = {isa = PBXFileReference; name = "Heebo-Light.ttf"; path = "../assets/fonts/Heebo-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		24A7BD7588424EDDA400C340 /* Heebo-Medium.ttf */ = {isa = PBXFileReference; name = "Heebo-Medium.ttf"; path = "../assets/fonts/Heebo-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0D4277647F8E4B9BA857F135 /* Heebo-Regular.ttf */ = {isa = PBXFileReference; name = "Heebo-Regular.ttf"; path = "../assets/fonts/Heebo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +112,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3D1B1BB09B6843528F2E6E36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B036C8A649B64113AF812999 /* Heebo-Light.ttf */,
+				24A7BD7588424EDDA400C340 /* Heebo-Medium.ttf */,
+				0D4277647F8E4B9BA857F135 /* Heebo-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,17 +165,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		3D1B1BB09B6843528F2E6E36 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				B036C8A649B64113AF812999 /* Heebo-Light.ttf */,
-				24A7BD7588424EDDA400C340 /* Heebo-Medium.ttf */,
-				0D4277647F8E4B9BA857F135 /* Heebo-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
