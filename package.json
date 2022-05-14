@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "react": "17.0.2",
     "react-hook-form": "^7.31.1",
     "react-native": "0.68.2",
