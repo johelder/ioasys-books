@@ -37,7 +37,7 @@ export const LogoTitle = styled.Text`
 
 export const LoginFormWrapper = styled.View``;
 
-export const EmailInputWrapper = styled.View`
+export const InputWrapper = styled.View`
   min-height: 60px;
 
   background-color: ${({theme}) => theme.colors.overlay_secondary};
@@ -45,22 +45,7 @@ export const EmailInputWrapper = styled.View`
   padding: 8px 16px;
 `;
 
-export const EmailLabel = styled.Text`
-  font-family: ${({theme}) => theme.fonts.primary_400};
-  font-size: 12px;
-
-  color: ${({theme}) => theme.colors.label};
-`;
-
-export const EmailInput = styled.TextInput`
-  font-family: ${({theme}) => theme.fonts.primary_400};
-  font-size: 12px;
-
-  color: ${({theme}) => theme.colors.light};
-  padding: 4px 0;
-`;
-
-export const PasswordInputWrapper = styled(EmailInputWrapper)`
+export const PasswordInputWrapper = styled(InputWrapper)`
   margin-top: 16px;
 
   flex-direction: row;
@@ -70,21 +55,6 @@ export const PasswordInputWrapper = styled(EmailInputWrapper)`
 
 export const PasswordInputContent = styled.View`
   flex: 1;
-`;
-
-export const PasswordLabel = styled.Text`
-  font-family: ${({theme}) => theme.fonts.primary_400};
-  font-size: 12px;
-
-  color: ${({theme}) => theme.colors.label};
-`;
-
-export const PasswordInput = styled.TextInput`
-  font-family: ${({theme}) => theme.fonts.primary_400};
-  font-size: 12px;
-
-  color: ${({theme}) => theme.colors.light};
-  padding: 4px 0;
 `;
 
 export const SignInButton = styled.TouchableOpacity.attrs({
