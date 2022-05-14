@@ -5,6 +5,7 @@ export const theme = {
     label: '#F2F2F2',
     light: '#FFFFFF',
     dark: '#333333',
+    attention: '#177FBF',
 
     overlay_secondary: 'rgba(0, 0, 0, 0.3)',
   },
