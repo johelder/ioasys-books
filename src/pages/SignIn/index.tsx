@@ -12,28 +12,28 @@ import {yupResolver} from '@hookform/resolvers/yup';
 
 import * as yup from 'yup';
 
+import {useAuth} from '../../hooks/auth';
+import {ISignInData} from '../../dtos';
+import {toast} from '../../utils/toast';
+
 import Logo from '../../assets/images/logo-white.svg';
 import backgroundImage from '../../assets/images/background-image.png';
 
-import * as S from './styles';
 import {Input} from '../../components/Input';
 
-export interface ILoginProps {
-  email: string;
-  password: string;
-}
+import * as S from './styles';
 
 const schema = yup.object().shape({
   email: yup.string().required('Email obrigatório!').email('Email inválido!'),
   password: yup.string().required('Senha obrigatória!'),
 });
 
-export const Login = () => {
+export const SignIn = () => {
   const {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<ILoginProps>({
+  } = useForm<ISignInData>({
     defaultValues: {
       email: '',
       password: '',
@@ -41,8 +41,20 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (loginData: ILoginProps) => {
-    console.log(loginData);
+  const {signIn} = useAuth();
+
+  const onSubmit = async (signInData: ISignInData) => {
+    try {
+      await schema.validate(signInData);
+      await signIn(signInData);
+    } catch (error) {
+      if (error instanceof yup.ValidationError) {
+        toast(error.message);
+        return;
+      }
+
+      toast(String(error));
+    }
   };
 
   return (
@@ -61,8 +73,8 @@ export const Login = () => {
                 <S.LogoTitle>Books</S.LogoTitle>
               </S.LogoWrapper>
 
-              <S.LoginFormWrapper>
-                <S.InputWrapper>
+              <S.SignInFormWrapper>
+                <S.EmailInputWrapper>
                   <Input
                     name="email"
                     label="Email"
@@ -72,7 +84,7 @@ export const Login = () => {
                     autoCorrect={false}
                     keyboardType="email-address"
                   />
-                </S.InputWrapper>
+                </S.EmailInputWrapper>
 
                 <S.PasswordInputWrapper>
                   <S.PasswordInputContent>
@@ -89,7 +101,7 @@ export const Login = () => {
                     <S.SignInButtonText>Entrar</S.SignInButtonText>
                   </S.SignInButton>
                 </S.PasswordInputWrapper>
-              </S.LoginFormWrapper>
+              </S.SignInFormWrapper>
             </S.Content>
           </ImageBackground>
         </TouchableWithoutFeedback>

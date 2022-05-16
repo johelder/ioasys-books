@@ -35,17 +35,17 @@ export const LogoTitle = styled.Text`
   margin-left: 16px;
 `;
 
-export const LoginFormWrapper = styled.View``;
+export const SignInFormWrapper = styled.View``;
 
-export const InputWrapper = styled.View`
-  min-height: 60px;
-
+export const EmailInputWrapper = styled.View`
   background-color: ${({theme}) => theme.colors.overlay_secondary};
   border-radius: 4px;
   padding: 8px 16px;
+
+  justify-content: center;
 `;
 
-export const PasswordInputWrapper = styled(InputWrapper)`
+export const PasswordInputWrapper = styled(EmailInputWrapper)`
   margin-top: 16px;
 
   flex-direction: row;
