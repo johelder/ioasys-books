@@ -3,6 +3,10 @@ import {TextInput} from 'react-native';
 
 export const Container = styled.View``;
 
+export const InputLabelWrapper = styled.View`
+  flex-direction: row;
+`;
+
 export const InputLabel = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary_400};
   font-size: 12px;
@@ -23,4 +27,5 @@ export const ErrorLabel = styled.Text`
   font-size: 12px;
 
   color: ${({theme}) => theme.colors.attention};
+  margin-left: 10px;
 `;

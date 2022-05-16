@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {TextInputProps} from 'react-native';
 
 import {Control, Controller} from 'react-hook-form';
-import {ILoginProps} from '../../pages/Login';
+
+import {ISignInData} from '../../dtos';
 
 import * as S from './styles';
 
@@ -10,19 +11,22 @@ export interface IInputProps extends TextInputProps {
   name: string;
   label: string;
   error: string | undefined;
-  control: Control<ILoginProps | any>;
+  control: Control<ISignInData | any>;
 }
 
 export const Input = ({name, label, error, control, ...rest}: IInputProps) => {
   const [isFilled, setIsFilled] = useState(false);
 
-  function handleInputBlur(value: string) {
+  const handleInputBlur = (value: string) => {
     setIsFilled(!!value);
-  }
+  };
 
   return (
     <S.Container>
-      <S.InputLabel>{label}</S.InputLabel>
+      <S.InputLabelWrapper>
+        <S.InputLabel>{label}</S.InputLabel>
+        {!isFilled && <S.ErrorLabel>{error}</S.ErrorLabel>}
+      </S.InputLabelWrapper>
       <Controller
         name={name}
         control={control}
@@ -35,7 +39,6 @@ export const Input = ({name, label, error, control, ...rest}: IInputProps) => {
           />
         )}
       />
-      {!isFilled && <S.ErrorLabel>{error}</S.ErrorLabel>}
     </S.Container>
   );
 };
