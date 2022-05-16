@@ -105,7 +105,6 @@ const AuthProvider = ({children}: IAuthContextProps) => {
       response => response,
       error => {
         return new Promise(async (resolve, reject) => {
-          console.log(error);
           const originalRequest = error.config;
           const shouldRevalidateAuthorizationToken =
             error.response.status === 401 &&
