@@ -6,7 +6,7 @@ import {Home} from '../pages';
 
 const Stack = createNativeStackNavigator();
 
-export const StackAppRoutes = () => {
+export const StackAuthRoutes = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
