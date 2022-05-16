@@ -1,15 +1,18 @@
 import React from 'react';
 
-import {Login} from './pages/Login';
+import {AppProvider} from './hooks';
 
 import {ThemeProvider} from 'styled-components';
 import {theme} from './styles/theme';
+import {Routes} from './routes';
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Login />
-    </ThemeProvider>
+    <AppProvider>
+      <ThemeProvider theme={theme}>
+        <Routes />
+      </ThemeProvider>
+    </AppProvider>
   );
 };
 
