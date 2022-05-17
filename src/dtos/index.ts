@@ -1,3 +1,4 @@
 import {ISignInData} from './SignInDTO';
+import {IBookData} from './BookDTO';
 
-export type {ISignInData};
+export type {ISignInData, IBookData};
