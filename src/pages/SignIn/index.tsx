@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ImageBackground,
   StatusBar,
@@ -19,7 +19,7 @@ import {toast} from '../../utils/toast';
 import Logo from '../../assets/images/logo-white.svg';
 import backgroundImage from '../../assets/images/background-image.png';
 
-import {Input} from '../../components/Input';
+import {Input} from '../../components';
 
 import * as S from './styles';
 
@@ -29,6 +29,8 @@ const schema = yup.object().shape({
 });
 
 export const SignIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -45,9 +47,13 @@ export const SignIn = () => {
 
   const onSubmit = async (signInData: ISignInData) => {
     try {
+      setIsLoading(true);
+
       await schema.validate(signInData);
       await signIn(signInData);
     } catch (error) {
+      setIsLoading(false);
+
       if (error instanceof yup.ValidationError) {
         toast(error.message);
         return;
@@ -98,7 +104,11 @@ export const SignIn = () => {
                   </S.PasswordInputContent>
 
                   <S.SignInButton onPress={handleSubmit(onSubmit)}>
-                    <S.SignInButtonText>Entrar</S.SignInButtonText>
+                    {isLoading ? (
+                      <S.LoadingIcon />
+                    ) : (
+                      <S.SignInButtonText>Entrar</S.SignInButtonText>
+                    )}
                   </S.SignInButton>
                 </S.PasswordInputWrapper>
               </S.SignInFormWrapper>

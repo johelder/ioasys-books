@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {theme as Theme} from '../../styles/theme';
 
 export const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -72,3 +73,7 @@ export const SignInButtonText = styled.Text`
 
   color: ${({theme}) => theme.colors.primary};
 `;
+
+export const LoadingIcon = styled.ActivityIndicator.attrs({
+  color: Theme.colors.primary,
+})``;
