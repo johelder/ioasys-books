@@ -2,7 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 
 import {useAuth} from '../../hooks/auth';
 import {api} from '../../services/api';
-import {IBookData} from '../../dtos';
+import {IBookData, TPageStatus} from '../../dtos';
 
 import {BookCard, ButtonIcon} from '../../components';
 
@@ -11,11 +11,10 @@ import FilterIcon from '../../assets/images/filter-icon.svg';
 
 import * as S from './styles';
 
-type TPageStatus = 'idle' | 'loading' | 'success' | 'error';
-
 export const Home = () => {
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const [booksList, setBooksList] = useState<IBookData[]>([]);
+  const [searchBook, setSearchBook] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalOfPages, setTotalOfPages] = useState(0);
@@ -23,25 +22,46 @@ export const Home = () => {
   const {signOut} = useAuth();
 
   const getBooks = useCallback(async () => {
-    if (totalOfPages && currentPage > totalOfPages) {
-      return;
-    }
-
     try {
-      const response = await api.get(`/books/?page=${currentPage}`);
+      if (totalOfPages && currentPage > totalOfPages) {
+        return;
+      }
+
+      const response = !searchBook
+        ? await api.get(`/books/?page=${currentPage}`)
+        : await api.get(`/books/?page=${currentPage}&title=${searchBook}`);
 
       setCurrentPage(response.data.page + 1);
       setTotalOfPages(response.data.totalPages);
+
       setBooksList(prevState => [...prevState, ...response.data.data]);
       setPageStatus('success');
     } catch (error) {
       setPageStatus('error');
     }
-  }, [currentPage, totalOfPages]);
+  }, [currentPage, searchBook, totalOfPages]);
+
+  const handleSearchBook = (searchText: string) => {
+    setSearchBook(searchText);
+  };
+
+  const searchBooks = async () => {
+    try {
+      setPageStatus('loading');
+      const response = await api.get(`/books/?page=1&title=${searchBook}`);
+
+      setCurrentPage(response.data.page + 1);
+      setTotalOfPages(response.data.totalPages);
+
+      setBooksList([...response.data.data]);
+      setPageStatus('success');
+    } catch (error) {
+      setPageStatus('error');
+    }
+  };
 
   useEffect(() => {
     setPageStatus('loading');
-
     getBooks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -51,7 +71,11 @@ export const Home = () => {
   }, []);
 
   const renderLoadingMoreData = useCallback(() => {
-    return <>{currentPage === totalOfPages ? null : <S.LoadingMoreBooks />}</>;
+    if (currentPage > totalOfPages) {
+      return null;
+    }
+
+    return <S.LoadingMoreBooks />;
   }, [currentPage, totalOfPages]);
 
   return (
@@ -68,9 +92,16 @@ export const Home = () => {
 
         <S.SearchWrapper>
           <S.SearchInputWrapper>
-            <S.SearchInput placeholder="Procure um livro" />
+            <S.SearchInput
+              placeholder="Procure um livro"
+              value={searchBook}
+              onChangeText={handleSearchBook}
+              onSubmitEditing={searchBooks}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
 
-            <S.SearchIconWrapper>
+            <S.SearchIconWrapper onPress={searchBooks}>
               <S.SearchIcon name="search" size={20} />
             </S.SearchIconWrapper>
           </S.SearchInputWrapper>
