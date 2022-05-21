@@ -20,8 +20,6 @@ export const Content = styled.View`
 `;
 
 export const Header = styled.View`
-  margin-top: 40px;
-
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +42,7 @@ export const LogoTitle = styled.Text`
 export const SearchWrapper = styled.View`
   width: 100%;
 
-  margin-top: 30px;
+  margin: 30px 0 10px;
 
   flex-direction: row;
   justify-content: space-between;
