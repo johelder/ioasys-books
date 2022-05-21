@@ -100,63 +100,8 @@ const AuthProvider = ({children}: IAuthContextProps) => {
     setUser(loggedUser);
   };
 
-  const revalidateAuthorizationToken = () => {
-    api.interceptors.response.use(
-      response => response,
-      error => {
-        return new Promise(async (resolve, reject) => {
-          const originalRequest = error.config;
-          const shouldRevalidateAuthorizationToken =
-            error.response.status === 401 &&
-            error.config &&
-            !error.config.retry;
-
-          if (!shouldRevalidateAuthorizationToken) {
-            reject(error);
-            return;
-          }
-
-          originalRequest.retry = true;
-          const userStorageData = await AsyncStorage.getItem(userStorageKey);
-
-          if (!userStorageData) {
-            return;
-          }
-
-          const {data: userData, authorization} = JSON.parse(
-            userStorageData,
-          ) as IStorageUserData;
-
-          const response = await api.post('/auth/refresh-token', {
-            refreshToken: authorization,
-          });
-
-          const formattedUserData = {
-            data: userData,
-            authorization: response.data['refresh-token'],
-          };
-
-          await AsyncStorage.setItem(
-            userStorageKey,
-            JSON.stringify(formattedUserData),
-          );
-
-          originalRequest.headers.Authorization = `Bearer ${response.data['refresh-token']}`;
-
-          api(originalRequest);
-
-          return resolve(response);
-        });
-      },
-    );
-  };
-
   useEffect(() => {
     loadUserFromStorage();
-  }, []);
-
-  useEffect(() => {
-    revalidateAuthorizationToken();
   }, []);
 
   return (
