@@ -18,16 +18,12 @@ api.interceptors.response.use(
 
     if (error.response.status === 401 && !error.config.data) {
       const response = await api.post('/auth/refresh-token', {
-        refreshToken: error.config.headers.Authorization,
+        refreshToken: error.config.headers.Authorization.replace('Bearer ', ''),
       });
 
-      const {
-        Authorization: newAuthorization,
-        ['refresh-token']: newRefreshToken,
-      } = response.data;
+      const {Authorization: newAuthorization} = response.data;
 
       error.config.headers.Authorization = newAuthorization;
-      error.config.headers['refresh-token'] = newRefreshToken;
 
       return Promise.resolve(response);
     }
