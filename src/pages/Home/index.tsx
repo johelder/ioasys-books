@@ -1,10 +1,13 @@
 import React, {useEffect, useState, useCallback} from 'react';
+import {ListRenderItemInfo} from 'react-native';
 
 import {useAuth} from '../../hooks/auth';
+import {useFilter} from '../../hooks/filter';
+
 import {api} from '../../services/api';
 import {IBookData, TPageStatus} from '../../dtos';
 
-import {BookCard, ButtonIcon} from '../../components';
+import {BookCard, ButtonIcon, FilterModal} from '../../components';
 
 import Logo from '../../assets/images/logo-black.svg';
 import FilterIcon from '../../assets/images/filter-icon.svg';
@@ -14,16 +17,24 @@ import * as S from './styles';
 export const Home = () => {
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const [booksList, setBooksList] = useState<IBookData[]>([]);
+  const [ListOfAllBooks, setListOfAllBooks] = useState<IBookData[]>([]);
   const [searchBook, setSearchBook] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalOfPages, setTotalOfPages] = useState(0);
 
+  const [toggleFilterModal, setToggleFilterModal] = useState(false);
+
   const {signOut} = useAuth();
+  const {filters, getFilteredList} = useFilter();
 
   const getBooks = useCallback(async () => {
     try {
       if (totalOfPages && currentPage > totalOfPages) {
+        return;
+      }
+
+      if (filters.length > 0) {
         return;
       }
 
@@ -36,10 +47,20 @@ export const Home = () => {
 
       setBooksList(prevState => [...prevState, ...response.data.data]);
       setPageStatus('success');
-    } catch (error) {
+    } catch {
       setPageStatus('error');
     }
-  }, [currentPage, searchBook, totalOfPages]);
+  }, [currentPage, filters.length, searchBook, totalOfPages]);
+
+  const getAllBooks = useCallback(async () => {
+    try {
+      const response = await api.get('/books/?page=1&amount=500');
+
+      setListOfAllBooks(response.data.data);
+    } catch {
+      setPageStatus('error');
+    }
+  }, []);
 
   const handleSearchBook = (searchText: string) => {
     setSearchBook(searchText);
@@ -55,10 +76,26 @@ export const Home = () => {
 
       setBooksList([...response.data.data]);
       setPageStatus('success');
-    } catch (error) {
+    } catch {
       setPageStatus('error');
     }
   };
+
+  const handleToggleFilterModal = useCallback(() => {
+    setToggleFilterModal(prevState => !prevState);
+  }, []);
+
+  const filterList = useCallback(() => {
+    const filteredList = getFilteredList(ListOfAllBooks);
+
+    if (!filteredList) {
+      return;
+    }
+
+    setBooksList(filteredList);
+    setCurrentPage(1);
+    setTotalOfPages(0);
+  }, [ListOfAllBooks, getFilteredList]);
 
   useEffect(() => {
     setPageStatus('loading');
@@ -66,9 +103,16 @@ export const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderBookCard = useCallback(({item: book}: {item: IBookData}) => {
-    return <BookCard book={book} />;
-  }, []);
+  useEffect(() => {
+    getAllBooks();
+  }, [getAllBooks]);
+
+  const renderBookCard = useCallback(
+    ({item: book}: ListRenderItemInfo<IBookData>) => {
+      return <BookCard book={book} />;
+    },
+    [],
+  );
 
   const renderLoadingMoreData = useCallback(() => {
     if (currentPage > totalOfPages) {
@@ -106,7 +150,7 @@ export const Home = () => {
             </S.SearchIconWrapper>
           </S.SearchInputWrapper>
 
-          <S.FilterWrapper>
+          <S.FilterWrapper onPress={handleToggleFilterModal}>
             <FilterIcon />
           </S.FilterWrapper>
         </S.SearchWrapper>
@@ -137,6 +181,12 @@ export const Home = () => {
           </S.ListWrapper>
         )}
       </S.Content>
+
+      <FilterModal
+        isOpen={toggleFilterModal}
+        closeFilterModal={handleToggleFilterModal}
+        filterList={filterList}
+      />
     </S.Container>
   );
 };
