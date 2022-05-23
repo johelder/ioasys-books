@@ -6,11 +6,12 @@ import React, {
   useState,
 } from 'react';
 
+import axios, {AxiosError} from 'axios';
+import {api} from '../services/api';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {ISignInData} from '../dtos';
-import {api} from '../services/api';
-import axios, {AxiosError} from 'axios';
 
 interface IAuthContextProps {
   children: ReactNode;
@@ -65,6 +66,7 @@ const AuthProvider = ({children}: IAuthContextProps) => {
         data: userData,
         authorization,
       };
+
       await AsyncStorage.setItem(
         userStorageKey,
         JSON.stringify(formattedUserData),
