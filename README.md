@@ -6,8 +6,6 @@
 
 ## 🚀 | Tecnologias
 
----
-
 - React Native;
 - React Navigation;
 - Context API;
@@ -17,8 +15,6 @@
 - Axios.
 
 ## 🏃 | Como rodar
-
----
 
 ### Clone o repositório:
 
