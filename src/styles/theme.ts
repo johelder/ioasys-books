@@ -8,6 +8,7 @@ export const theme = {
     attention: '#177FBF',
     light_gray: '#999999',
 
+    overlay_primary: 'rgba(0, 0, 0, 0.4)',
     overlay_secondary: 'rgba(0, 0, 0, 0.3)',
     border: 'rgba(51, 51, 51, 0.2)',
     placeholder: 'rgba(153, 153, 153, 0.7)',
