@@ -19,13 +19,13 @@
 ### Clone o repositório:
 
 ```bash
-  https://github.com/johelder/ioasys-books.git
+https://github.com/johelder/ioasys-books.git
 ```
 
 ### Instale as dependências do projeto:
 
 ```bash
-  yarn
+yarn
 ```
 
 ### Rode o Metro:
